@@ -1,0 +1,399 @@
+%This template is based on one provided by the American Physical Society for submission to its journals.
+
+\documentclass[floats,floatfix,aps,twocolumn,preprintnumbers,nofootinbib]{revtex4-2}
+
+
+
+%----------------------------------------------------
+%The following packages add LaTeX commands that make formatting and writing math easier
+
+\usepackage{graphicx}  % Include figure files
+\usepackage{subcaption}
+\usepackage{multirow}
+
+\usepackage[T1]{fontenc}
+\usepackage{dcolumn}   % Align table columns on decimal point
+
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{bm}        % bold math
+\usepackage{amsfonts}  % Common math fonts
+\usepackage{amsmath}   % Common math functions
+\usepackage{amssymb}   % Common math symbols
+\usepackage{esint}
+\usepackage{mathrsfs}
+\usepackage{slashed}   % Feynman slash
+\usepackage[pdfencoding=auto]{hyperref}
+
+%----------------------------------------------------
+%The following custom commands simplify commonly used LaTeX commands
+
+%Parentheses and Brackets
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\bracket}[1]{\left[ #1 \right]}
+
+%Quantum Mechanics
+\newcommand{\dg}{^\dagger}
+\newcommand{\exv}[1]{\left\langle #1 \right\rangle}
+
+%Derivatives
+
+\newcommand{\pdtwo}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
+\newcommand{\fdtwo}[2]{\frac{d^2 #1}{d #2 ^2}}
+
+%Fonts
+\newcommand{\bb}{\mathbf}
+\newcommand{\mrm}{\mathrm}
+\newcommand{\bi}{\boldsymbol}
+
+\newcommand{\mcal}{\mathcal}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mscr}{\mathscr}
+\newcommand{\mfrak}{\mathfrak}
+
+%Equation
+\newcommand{\eq}[1]{\begin{equation} #1 \end{equation}}
+
+%Matrices
+
+\newcommand{\sigx}{\left( \begin{array}{cc} 0 & 1\\ 1 & 0 \end{array}\right)}
+\newcommand{\sigy}{\left( \begin{array}{cc} 0 & -i\\ i & 0 \end{array}\right)}
+\newcommand{\sigz}{\left( \begin{array}{cc} 1 & 0\\ 0 & -1 \end{array}\right)}
+
+\newcommand{\mymatrix}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+
+%---------------------------------------------------
+\setlength{\parindent}{10pt}
+\graphicspath{{images/}}
+
+\begin{document}
+
+\title{Dynamics around Charged Black Holes in Entangled Relativity\\
+M2 Internship Report}
+
+\author{Arnaud Crepinge}
+\email[]{arnaud.crepinge@etu.univ-lyon1.fr}
+\affiliation{Université Claude Bernard Lyon 1, Villeurbanne, France}
+
+\author{Supervised by Olivier Minazzoli}
+\email[]{olivier.minazzoli@oca.eu}
+\affiliation{Observatoire de la Côte-d'Azur, Nice, France}
+
+
+\begin{abstract}  
+
+Entangled Relativity is a modified theory of gravity developed by O. Minazzoli and collaborators, with applications in astrophysics and cosmology. This report presents the work carried out during my M2 internship, completed as part of the requirements for my Master’s degree in Fundamental Physics. The natural system of units ($c = \hbar = G = 4\pi\varepsilon_0 = 1$) is used throughout the document and we use the mostly plus convention for the metric tensors signature. The code giving the results presented in this document can be found at \href{https://github.com/ArnaudCrepinge/M2Internship}{https://github.com/ArnaudCrepinge/M2Internship}.
+
+\end{abstract}
+
+
+\maketitle 
+
+\noindent{\bf{\em Introduction.}} General Relativity (GR) emerged from the work of A. Einstein between 1915 and 1916 \cite{Einstein1916GR}. It currently stands as the most successful theory describing gravitational interactions, replacing the Newtonian description of gravity by a geometrical interpretation of spacetime. In this framework, gravity is no longer considered as a force but rather as a manifestation of spacetime curvature induced by the presence of matter and energy. This conceptual shift has led to numerous predictions, many of which have been experimentally confirmed, including the deflection of light by massive bodies, the precession of Mercury's perihelion, gravitational redshift, black holes, and gravitational waves. These successes have established GR as a cornerstone of modern theoretical physics.
+
+The formulation of GR relies on two fundamental principles. The first one is the principle of general covariance, which states that the laws of physics must be invariant under arbitrary coordinate transformations. The second one is the equivalence principle, which establishes the local equivalence between inertial motion and motion under the influence of gravity. Together, these principles lead naturally to a description of gravitation in terms of a curved spacetime whose geometry is encoded in the metric tensor $g_{\mu\nu}$. The dynamics of this geometry are governed by Einstein's field equations, which relate the spacetime curvature to the energy-momentum tensor $T_{\mu\nu}$ describing matter and energy content.
+
+Despite its remarkable successes, Einstein himself expressed dissatisfaction with one conceptual aspect of GR. In particular, he was concerned with the absence of a strict implementation of Mach's principle \cite{Pais2005Subtle}. According to this idea, the inertial properties of a physical system should be entirely determined by the distribution of matter in the Universe. Einstein formulated this principle as the requirement that the metric tensor $g_{\mu\nu}$ should be completely determined by the energy-momentum tensor $T_{\mu\nu}$ \cite{Barbour1995Mach}. In other words, spacetime geometry should not exist independently of matter. However, GR admits vacuum solutions, meaning that non-trivial spacetime geometries can exist even in the absence of matter. This feature appears to contradict Mach's principle and therefore raised conceptual concerns.
+
+Motivated by this issue, Einstein introduced the cosmological constant $\Lambda$ into the field equations \cite{minazzoli:hal-05201686}. This modification was initially intended to remove certain vacuum solutions and allow for a static cosmological model. With this addition, the Minkowski flat spacetime is no longer a solution in the absence of matter. However, shortly after this proposal, De Sitter demonstrated that even with a cosmological constant, GR still admits vacuum solutions \cite{1917KNAB...19.1217D}. Consequently, the introduction of $\Lambda$ did not resolve the tension with Mach's principle, and Einstein gradually abandoned this line of thought \cite{einstein1918kritisches}.
+
+Beyond this conceptual issue, other limitations of GR have motivated the exploration of alternative theories of gravity. In particular, problems arise when attempting to unify GR and quantum mechanics, leading to unresolved questions about quantum gravity. Additionally, the presence of spacetime singularities, such as those predicted at the center of black holes or at the origin of the Universe, suggests that GR may be incomplete. These challenges have encouraged the development of modified theories of gravity, aiming either to extend GR or to address its conceptual shortcomings.
+
+In this context, the theory of Entangled Relativity (ER) emerged in 2015 as a novel alternative to GR. This theory belongs to the class of $f(R,\mcal L_m)$ models, where the gravitational action depends explicitly on both the Ricci scalar $R$ and the matter Lagrangian density $\mcal L_m$. A distinctive feature of this approach is that the theory is only defined in the presence of matter, thereby naturally implementing Mach's principle \cite{Minazzoli2021}. In this framework, spacetime geometry and matter fields are intrinsically linked, leading to modified gravitational dynamics.
+
+The implications of Entangled Relativity extend beyond gravitation itself. In particular, the theory predicts a variation of the Planck constant and establishes a proportionality relation between Newton's gravitational constant $G$ and the reduced Planck constant $\hbar$ \cite{minazzoli2025quantumactionentangledrelativity}. Such features suggest deep connections between gravitation and quantum physics. Moreover, the absence of vacuum solutions leads to significant differences with GR. For instance, the Schwarzschild solution, which describes an uncharged black hole in vacuum within GR, no longer exists in this framework. Nevertheless, black hole solutions can still be obtained by considering matter fields. The simplest example corresponds to an electromagnetic field, leading to a charged black hole solution \cite{Wavasseur2025}.
+
+The purpose of this internship is to investigate the dynamics of bodies evolving in such backgrounds. This study involves analyzing the motion of test particles in modified gravitational fields, taking into account the presence of forced geodesics, non-conservation of the energy-momentum tensor, and conformal transformations. Understanding these dynamics is essential to explore the physical implications of Entangled Relativity and to identify potential observational signatures that could distinguish it from GR.
+
+This work therefore aims to contribute to the study of alternative theories of gravity by examining the consequences of matter-geometry coupling on particle dynamics and gravitational structures. Through this investigation, we seek to better understand the theoretical foundations and phenomenological predictions of Entangled Relativity.\\
+
+
+
+
+
+
+\noindent{\bf{\em General Relativity.}} It is well-known that GR is defined by the Einstein-Hilbert action\footnote{The Hodge dual of a scalar $A$ is $\star A = A\sqrt{|g|}\mrm d^4x$ with $|g|$ the absolute value of the determinant of the metric.}:
+
+\begin{equation}\label{ActionGR}
+    S_{\mrm{GR}}[g, \Psi] = \int \star \paren{\frac{1}{2\kappa}R + \mcal L_m},
+\end{equation}
+
+where $\kappa = 8\pi$, $R$ is the Ricci scalar associated with the metric $g$ and $\mcal L_m$ is the matter lagrangian density that contains dependencies in $\Psi$. This action describes the dynamics of the gravitational field $g$ in the presence of matter and energy encoded in $\mcal L_m$. The value of $\kappa$ is fixed by requiring that the theory reproduces Newtonian gravity in the weak-field limit, leading to the Poisson equation $\nabla^2\Phi = 4\pi\rho$. Vacuum solutions of GR corresponds to the case $\mcal L_m = 0$. Varying the action with respect to the metric and imposing the principle of stationary action yields the Einstein field equations:
+
+\begin{equation}
+    R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = \kappa T_{\mu\nu},
+\end{equation}
+
+where the energy-momentum tensor is defined as
+
+\begin{equation}\label{EMTensor}
+    T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}} .
+\end{equation}
+
+The contracted Bianchi identities imply the covariant conservation of the energy-momentum tensor:
+
+\eq{
+\nabla_\mu T^{\mu\nu} = 0
+}
+
+which expresses local energy-momentum conservation in curved spacetime. If we note $T$ the trace of the energy-momentum tensor, then we can find $\kappa = -R/T$, which shows that the ratio $R/T$ is a negative constant. Alternative theories typically arise from modifications of the Einstein-Hilbert action. Entangled relativity is one of them. \\
+
+\noindent{\bf{\em Entangled Relativity.}} On the other hand, ER is defined by the action:
+
+\begin{equation}\label{ActionER1}
+    S_{\mrm{ER}}[g, \Psi] = \int \star\paren{\frac{\mcal L_m^2}{R}}
+\end{equation}
+
+which fits in the $f(R,\mcal L_m)$ type of gravity theories. In that case the relation between matter and geometry becomes non-linear and there is no vacuum solution. The field equation reads:
+
+\begin{equation}\label{FieldEqER}
+    R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = -\frac{R}{\mcal L_m}T_{\mu\nu} + \frac{R^2}{\mcal L_m^2}(\nabla_\mu\nabla_\nu - g_{\mu\nu}\square)\frac{\mcal L_m^2}{R^2},
+\end{equation}
+
+with the same definition (\ref{EMTensor}) and the d'Alembertian operator $\square \equiv \nabla_\alpha\nabla^\alpha$. This equation can be found using the results presented in \cite{Fujii2003ScalarTensor}. We can write a classically equivalent theory with the action:
+
+\begin{equation}\label{ActionER2}
+    S_{\mrm{ER}}[g, \phi, \Psi] = \frac{1}{\bar\kappa}\int\star\paren{\frac{\phi R}{2\bar\kappa} + \sqrt\phi\mcal L_m}
+\end{equation}
+
+where $\bar\kappa$ is a constant that we will set $\bar\kappa = 1$ and with $\mcal L_m \neq 0$. Varying (\ref{ActionER2}) with respect to $\phi$ gives $\sqrt\phi = -\mcal L_m/R$, which allows us to recover the action (\ref{ActionER1}). By writing $\phi = \kappa^{-2}$, we have:
+
+\begin{equation}
+    S_{\mrm{ER}}(g,\kappa,\Psi) = \int\star\frac{1}{\kappa}\paren{\frac{R}{2\kappa} + \mcal L_m}
+\end{equation}
+which reminds of action (\ref{ActionGR}) but with $\kappa$ a scalar field instead of a constant. Computing the trace of the field equation (\ref{FieldEqER}) leads to:
+
+\begin{equation}
+    3\kappa^2\square\kappa^{-2} = \kappa(T - \mcal L_m)
+\end{equation}
+
+Therefore, the scalar field $\kappa$ is driven by the difference between $T$ and $\mcal L_m$. Note that we have written everything in the "entangled" frame so far but we can also consider the Jordan frame which is obtained by proceeding to the conformal transformation:
+
+\begin{equation}
+    g_{\mu\nu} \mapsto \tilde g_{\mu\nu} = \phi g_{\mu\nu}
+\end{equation}
+
+which means that all lengths and time intervals are stretched locally while preserving angles.
+\\
+
+
+\noindent{\bf{\em Reissner-Nordström Black Hole.}} In GR, the background describing the gravitational field of a non-rotating charged black hole of mass $M$ and charge $Q$ is the Reissner-Nordström solution. It is defined by the spacetime interval:
+
+\begin{align}
+    \mrm ds^2 = &-\paren{1-\frac{r_+}{r}}\paren{1 - \frac{r_-}{r}}\mrm dt^2\notag\\
+    &+\paren{1 - \frac{r_+}{r}}^{-1}\paren{1 - \frac{r_-}{r}}^{-1}\mrm dr^2\notag\\
+    &+ r^2\mrm d\Omega^2
+\end{align}
+
+where $\mrm d\Omega^2 = \mrm d\theta^2 + \sin^2\theta\mrm d\varphi^2$, with the horizons
+
+\begin{equation}
+    r_\pm = M \pm \sqrt{M^2 - Q^2}
+\end{equation}
+
+such that when the charge of the black hole vanishes, the outer horizon tends to the Schwarzschild radius while the inner horizon vanishes as well. These horizons are mathematical singularities but are not physical singularities. The way to exhibit it is to switch to ingoing (or outgoing) Eddington-Finkelstein coordinates obtained by the transformation $t \mapsto v$ such that:
+
+\begin{equation}
+    \mrm dt = \mrm dv - \frac{\mrm dr}{\paren{1 - \frac{r_-}{r}}\paren{1 - \frac{r_+}{r}}}
+\end{equation}
+
+This solution is typically obtained by considering the lagrangian of an electromagnetic field $\mcal L_m = \mcal L_{\mrm{EM}} = -\frac{1}{4}F\wedge\star F$ where $F = \mrm dA$ with $A$ the electromagnetic field given by:
+
+\begin{equation}
+    A = -\frac{Q}{r}\mrm dt
+\end{equation}
+
+\noindent{\bf{\em Charged Black Hole in ER.}} In ER, considering the same matter lagrangian, we obtain the following solution of the field equations (\ref{FieldEqER}):
+
+\begin{align}
+    \mrm ds^2 = &-\paren{1-\frac{r_+}{r}}\paren{1 - \frac{r_-}{r}}^{15/13}\mrm dt^2\notag\\
+    &+\paren{1 - \frac{r_+}{r}}^{-1}\paren{1 - \frac{r_-}{r}}^{-7/13}\mrm dr^2\notag\\
+    &+ r^2\paren{1 - \frac{r_-}{r}}^{6/13}\mrm d\Omega^2
+\end{align}
+
+with the horizons
+
+\begin{align}\label{HorizonsER}
+    r_- &= \frac{13}{11}\left(M - \sqrt{M^2 - \frac{11}{12}Q^2}\right) \\
+    r_+ &= M + \sqrt{M^2 - \frac{11}{12}Q^2}
+\end{align}
+
+We imposed that $r_-$ vanishes while $r_+$ tends to $r_s = 2M$ when $Q \to 0$. The scalar field is given by:
+
+\begin{equation}
+    \phi = \kappa^{-2} = \paren{1 - \frac{r_-}{r}}^{-4/13}
+\end{equation}
+
+While GR only allows for $Q \leq M$, ER on the other hand allows for $Q \leq \sqrt{\frac{12}{11}}M$ which is less restrictive. This aspect is discussed in appendix.\\
+
+
+
+\noindent{\bf{\em Photon Orbits Analysis.}} First, we want to look at the simplest cases: photons. It is easier because photons follow null geodesics of the metric both in GR and in ER. A first test would be to plot the geodesics in the $(x,y)$ plane for different charges. This can be done using the Sage Manifolds environment, which allows us to integrate the geodesics equation quickly. Another possible analysis is by writing an effective potential.\\
+
+
+
+\noindent{\bf{\em Black Hole Phenomenology.}} The purpose here is to consider different observations and find a black hole's properties from them. This is one way of testing the theory of ER. For instance, the Event Horizon Telescope (EHT) shows us an accretion disk whose radius can be considered equal as the radius of the unstable photon orbit, noted $r_{\mrm{ph}}$, as a first approximation. We can also consider trajectories of bodies that are far away from the black hole. First, we consider these trajectories as circular (not a good approximation). We can write a 3rd Kepler's law equivalent for charged black holes in GR and in ER by applying a post-newtonian approach, which means we solve the classical equation of motion:
+
+\begin{equation}
+    \bb a = \nabla U
+\end{equation}
+
+with $U$ the potential defined by:
+
+\begin{equation}
+    g_{tt} = -1 + 2U.
+\end{equation}
+
+We then have two functions\footnote{The radius of the trajectory of the body $R$ is a parameter and not a variable of $\Omega^2$.} $r_{\mrm{ph}}(M,Q)$ and $\Omega^2(M,Q;R)$ of $M$ and $Q$. Considering the measurements $(R_{\mrm{ph}},R_{\mrm{orb}}, \omega)$, we can plot the contours defined by $r_{\mrm{ph}}(M,Q) = R_{\mrm{ph}}$ and $\Omega^2(M,Q;R_{\mrm{orb}}) = \omega^2$. The properties of the black hole determined for each theory would be the intersection of the contours. One question arises, how far does the body have to be so we can consider the energy-impulsion to be conserved in ER ? Since the force term is proportional to $\partial_\lambda\kappa / \kappa$, we impose $|\partial_r\kappa /\kappa| = \epsilon \ll 1$. Therefore, we consider $R > r_\epsilon$ with:
+
+\begin{equation}
+    r_\epsilon = \frac{1}{2}\paren{r_- + \sqrt{r_-^2 + \frac{8r_-}{13\epsilon}}}
+\end{equation}
+
+such that $r_\epsilon \to \infty$ when $\epsilon \to 0$ and $r_\epsilon \to r_-$ when $\epsilon \to \infty$. 
+
+
+
+
+
+
+
+
+
+\noindent{\bf{\em Results.}} 
+
+
+
+
+
+
+
+\noindent{\bf{\em Conclusion.}} 
+
+\noindent{\bf{\em Acknowledgements.}} 
+
+
+\bibliography{ref}
+
+
+\appendix
+\onecolumngrid
+
+\section{Domain of validity of the metric for a charged black hole in ER}
+Considering the relations:
+\begin{align*}
+    2M &= r_+ + \frac{11}{13}r_-  \\
+    Q^2 &= \frac{12}{13}r_-r_+
+\end{align*}
+one can find the two solutions:
+\begin{align*}
+r_-^{(\pm)} &= \frac{13}{11}\left(M \pm \sqrt{M^2 - \frac{11}{12}Q^2}\right) \\
+r_+^{(\pm)} &= M \mp \sqrt{M^2 - \frac{11}{12}Q^2}
+\end{align*}
+We want to impose the condition that when the charge $Q$ vanishes, we recover the usual Scharzschild horizon so that $r_+ \to r_s = 2M$ and $r_- \to 0$. Therefore, we choose the solution $(-)$ given by equations (\ref{HorizonsER}). We see that these horizons are only defined when $M^2 - \frac{11}{12}Q^2 \geq 0$ which gives the condition $Q \lesssim 1.044 M$. ER appears as less restrictive than GR as it allows for more $(M,Q)$ states.
+
+\section{Effective potentials in GR and ER}
+
+In this section, we consider geodesics in the equatorial plane so that $\mrm d\theta = 0$. For any $A$ we will note $\dot A = \frac{\mrm dA}{\mrm d\lambda}$ where $\lambda$ is an affine parameter that is not the proper time since we're interested in null geodesics. We also consider the "lagrangian-like" function of coordinates and velocities $\mscr L(x,\dot x) = g_{\mu\nu}\dot x^\mu\dot x^\nu$ for both GR and ER.
+
+\paragraph{For GR:} We have:
+
+\begin{equation}
+    \mscr L(r,\dot t, \dot r, \dot\varphi) = -\paren{1 - \frac{r_-}{r}}\paren{1 - \frac{r_+}{r}}\dot t^2 +\paren{1 - \frac{r_-}{r}}^{-1}\paren{1 - \frac{r_+}{r}}^{-1}\dot r^2 + r^2\dot\varphi^2
+\end{equation}
+
+By following a variational approach, we have the Euler-Lagrange equations $\frac{\mrm d}{\mrm d\lambda}\frac{\partial \mscr L}{\partial \dot x} = \frac{\partial \mscr L}{\partial x}$. Therefore, we can define the two conserved values:
+
+\begin{align}
+    E &= \paren{1 - \frac{r_-}{r}}\paren{1 - \frac{r_+}{r}}\dot t\\
+    L &= r^2\dot\varphi
+\end{align}
+
+which are respectively the total energy and the angular momentum of the photon. Imposing that $\mrm ds^2 = 0$ for a photon, one can find the differential equation:
+
+\begin{equation}
+    \dot r^2 + \frac{L^2}{r^2}\paren{1 - \frac{r_-}{r}}\paren{1 - \frac{r_+}{r}} = E^2
+\end{equation}
+
+We now reparameterize $\lambda$ with the angular momentum by $\tilde\lambda = |L|\lambda$ where the absolute value ensures the conservation of the chronology. We have now:
+
+\begin{equation}
+    \paren{\frac{\mrm dr}{\mrm d\tilde\lambda}}^2 + V_{\mrm{eff}}^{\mrm{GR}}(r) = b^{-2}
+\end{equation}
+
+with $b = |L|/E$ and where:
+
+\begin{equation}
+    V_{\mrm{eff}}^{\mrm{GR}}(r) = \frac{1}{r^2}\paren{1 - \frac{r_-}{r}}\paren{1 - \frac{r_+}{r}}
+\end{equation}
+
+\paragraph{For ER:} we have:
+
+\begin{equation}
+    \mscr L(r,\dot t, \dot r, \dot\varphi) = -\paren{1 - \frac{r_-}{r}}^{15/13}\paren{1 - \frac{r_+}{r}}\dot t^2 +\paren{1 - \frac{r_-}{r}}^{-7/13}\paren{1 - \frac{r_+}{r}}^{-1}\dot r^2 + r^2\paren{1 - \frac{r_-}{r}}^{6/13}\dot\varphi^2
+\end{equation}
+
+In that case, the conserved quantities are:
+
+\begin{align}
+    E &= \paren{1 - \frac{r_+}{r}}\paren{1 - \frac{r_-}{r}}^{15/13}\dot t \\
+    L &= r^2\paren{1 - \frac{r_-}{r}}^{6/13}\dot\varphi
+\end{align}
+
+Therefore, by applying the same method as above, one can find the equation:
+
+\begin{equation}
+    \paren{\frac{\mrm dr}{\mrm d\tilde\lambda}}^2 + \paren{1 - \frac{r_-}{r}}^{-8/13}V_{\mrm{eff}}^{\mrm{ER}}(r) = b^{-2}\paren{1 - \frac{r_-}{r}}^{-8/13}
+\end{equation}
+
+with:
+
+\begin{equation}
+    V_{\mrm{eff}}^{\mrm{ER}}(r) = \frac{1}{r^2}\paren{1 - \frac{r_+}{r}}\paren{1 - \frac{r_-}{r}}^{9/13}
+\end{equation}
+
+\section{Geodesics Equation under Conformal Transformation}
+
+We define a conformal transformation as:
+
+\begin{equation}
+    g_{\mu\nu} \mapsto \tilde g_{\mu\nu} = \phi g_{\mu\nu},
+\end{equation}
+
+where $g_{\mu\nu}$ is associated to the Einstein frame while $\tilde g_{\mu\nu}$ is associated to the Jordan frame. Hence, one can show that the Christoffel's symbols transform as:
+
+\begin{equation}
+    \Gamma^\sigma_{\;\mu\nu} \mapsto \tilde\Gamma^\sigma_{\;\mu\nu} = \Gamma^\sigma_{\;\mu\nu} + \frac{1}{2}\phi^{-1}(\delta^\sigma_\nu\partial_\mu\phi + \delta^\sigma_\mu\partial_\nu\phi - g_{\mu\nu}g^{\sigma\lambda}\partial_\lambda\phi).
+\end{equation}
+
+Assuming that massive particles follow geodesics in the Jordan frame, we have:
+
+\begin{equation}\label{GeodesicsConform}
+    \frac{\mrm d^2x^\sigma}{\mrm d\tilde\tau^2} + \tilde\Gamma^\sigma_{\;\mu\nu}\frac{\mrm dx^\mu}{\mrm d\tilde\tau}\frac{\mrm dx^\nu}{\mrm d\tilde\tau} = 0,
+\end{equation}
+
+where
+
+\begin{equation}
+    \mrm d\tilde\tau^2 = -\tilde g_{\mu\nu}\mrm dx^\mu \mrm dx^\nu = - \phi g_{\mu\nu}\mrm dx^\mu \mrm dx^\nu = \phi\mrm d\tau^2.
+\end{equation}
+Then, if we write $\mrm dx^\mu/\mrm d\tau = u^\mu$, equation \ref{GeodesicsConform} becomes:
+
+\begin{equation}
+    \frac{\mrm d u^\sigma}{\mrm d\tau} - \frac{1}{2\phi}\frac{\mrm d\phi}{\mrm d\tau}u^\sigma + \Gamma^\sigma_{\;\mu\nu}u^\mu u^\nu + \frac{1}{2}\phi^{-1}(\delta^\sigma_\nu\partial_\mu\phi + \delta^\sigma_\mu\partial_\nu\phi - g_{\mu\nu}g^{\sigma\lambda}\partial_\lambda\phi) u^\mu u^\nu = 0.
+\end{equation}
+Therefore, knowing that $\mrm d\phi /\mrm d\tau = u^\mu\partial_\mu\phi$ one gets the result:
+
+\begin{equation}
+    \frac{\mrm d u^\sigma}{\mrm d\tau} + \Gamma^\sigma_{\;\mu\nu}u^\mu u^\nu = -\frac{1}{2}(u^\sigma u^\lambda + g^{\sigma\lambda})\frac{\partial_\lambda\phi}{\phi},
+\end{equation}
+
+which is the geodesics equation with a force term proportional to the derivative of the scalar field $\phi$.
+
+\section{3rd Kepler's law for Charged Black Holes}
+
+
+
+
+\end{document}
