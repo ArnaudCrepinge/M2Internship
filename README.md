@@ -7,5 +7,3 @@
 #### Supervised by O. Minazzoli
 
 This repository contains the code I wrote during my Master 2 internship at Observatoire de la Côte-d'Azur.
-
-My report can also be found in pdf and in LaTeX.

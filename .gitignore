@@ -1,4 +1,4 @@
-main.aux
+LaTeX Report/main.aux
 main.bbl
 main.blg
 main.fdb_latexmk
@@ -6,4 +6,6 @@ main.fls
 main.log
 main.out
 main.synctex.gz
-mainNotes.bib
+LaTeX Report/mainNotes.bib
+
+/LaTeX_Report
