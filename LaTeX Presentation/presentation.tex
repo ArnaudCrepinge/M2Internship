@@ -90,7 +90,11 @@ Observatoire de la Côte-d'Azur}
         \item General covariance
         \item Equivalence principle
     \end{itemize}
-
+\vspace{10pt}
+    \textbf{Mach's principle}: The metric tensor $g_{\mu\nu}$ should be \textbf{completely} determined by the energy-momentum tensor $T_{\mu\nu}$.\\
+\vspace{10pt}
+    2015: Entangled Relativity\\
+\vspace{10pt}
     Conventions: $(-,+,+,+)$ metric signature and $c=\hbar=G=4\pi\varepsilon_0 = 1$ natural system of units.
 
 \end{frame}
@@ -151,11 +155,34 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
     \begin{equation}
         R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = -\frac{R}{\mcal L_m}T_{\mu\nu}+\frac{R^2}{\mcal L_m^2}\paren{\nabla_\mu\nabla_\nu - g_{\mu\nu}\square}\frac{\mcal L_m^2}{R^2}
     \end{equation}
+
+    Local non-conservation of energy-momentum:
+
+    \begin{equation}
+        \nabla_\mu T^{\mu\nu} \neq 0
+    \end{equation}
   
 \end{frame}
 
 \begin{frame}{Scalar-Tensor form of Entangled Relativity}
 
+    Non-linear $f(R)$ theories admit an additional degree of freedom. Classically equivalent form (for $\mcal L_m \neq 0$):
+
+    \begin{equation}
+        S\bracket{g, \phi, \Psi} = \int \paren{\frac{\phi R}{2} + \sqrt{\phi}\mcal L_m}\sqrt{|g|}\mrm d^4x
+    \end{equation}
+
+    or with $\phi = \kappa^{-2}$:
+
+    \begin{equation}
+        S\bracket{g, \kappa, \Psi} = \int \frac{1}{\kappa}\paren{\frac{R}{2\kappa} + \mcal L_m}\sqrt{|g|}\mrm d^4x
+    \end{equation}
+
+    Field equation:
+
+    \begin{equation}
+        3\kappa^2\square \kappa^{-2} = \kappa \paren{T - \mcal L_m}
+    \end{equation}
   
 \end{frame}
 
@@ -195,6 +222,24 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
     \end{align}
 \end{frame}
 
+\begin{frame}{Einstein and Entangled Frames}
+    \begin{center}
+        
+    \begin{tabular}{cc}
+        Entangled frame & Einstein frame \\
+        \hline
+        $g_{\mu\nu}$ & $\tilde g_{\mu\nu} = \phi g_{\mu\nu}$\\
+        Massive particles do not follow geodesics & Particles follow geodesics
+    \end{tabular}
+
+    \end{center}
+
+    \vspace{20pt}
+
+    Schematically: "$\tilde g \equiv g + \phi$"
+    
+\end{frame}
+
 \begin{frame}{Domain of Validity of the Solution}
 
     Horizons:
@@ -216,7 +261,7 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
 
 \begin{frame}{Areal Radius}
 
-    Areal radius:
+    Areal radius $\rho$: $A = 4\pi\rho^2$
 
     \begin{equation}
         \rho_\mrm{GR} = r_\mrm{GR},\ \ \ \rho_\mrm{ER} = r_\mrm{ER}\paren{1 - \frac{r_-}{r_\mrm{ER}}}^{1/13}
@@ -231,30 +276,174 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
 \section{Results}
 \subsection{Null Geodesics Analysis}
 \begin{frame}{Null Geodesics Analysis}
+
+    \begin{figure}
+        \includegraphics[width=0.49\linewidth]{images/NullGeodesics_rCoordinate.png}
+        \includegraphics[width=0.49\linewidth]{images/NullGeodesics_rhoCoordinate.png}
+    \end{figure}
+
   
 \end{frame}
 
-\begin{frame}{Null Geodesics Analysis}
+\begin{frame}{Null Geodesics Analysis - Effective Potential}
+
+    \begin{figure}
+        \includegraphics[width=0.7\linewidth]{images/EffectivePotentials_Mass.png}
+    \end{figure}
+  
+\end{frame}
+
+\begin{frame}{Null Geodesics Analysis - Photon Sphere}
+
+    \begin{figure}
+        \includegraphics[width=0.8\linewidth]{images/PhotonSphere_Horizon.png}
+    \end{figure}
   
 \end{frame}
 
 \subsection{Timelike Geodesics Analysis}
-\begin{frame}{Timelike Geodesics Analysis}
+\begin{frame}{Timelike Geodesics Analysis - ISCO Radius}
+
+    Given in GR by:
+
+    \begin{equation}
+        Mr^3 - 6M^2r^2 + 9MQ^2r - 4Q^4 = 0
+    \end{equation}
+
+    Given in ER by:
+
+    \begin{align}
+    &(2197r_+ + 1859 r_-)r^4 \notag \\
+    &- (6591 r_+^2 + 13351r_+r_- + 6578r_-^2)r^3 \notag \\
+    &+ (24336r_+^2r_- + 25740r_+r_-^2 + 4620 r_-^3)r^2 \notag \\
+    &- (31668r_+^2r_-^2 + 14388r_+r_-^3)r \notag \\
+    &+ 13824r_+^2r_-^3=0,
+\end{align}
   
 \end{frame}
 
-\begin{frame}{Timelike Geodesics Analysis}
+\begin{frame}{Timelike Geodesics Analysis - ISCO Radius}
+
+    \begin{figure}
+        \includegraphics[width=0.49\linewidth]{images/ISCO.png}
+        \includegraphics[width=0.49\linewidth]{images/ISCO2.png}
+    \end{figure}
+  
+\end{frame}
+
+\begin{frame}{Timelike Geodesics Analysis - Kepler's Third Law}
+
+    Given in GR by:
+
+    \begin{equation}
+        \Omega_\mrm{GR}^2 = \frac{M}{r^3}-\frac{Q^2}{r^4}
+    \end{equation}
+
+    Given in ER by:
+
+    \begin{equation}
+    \Omega_\mrm{ER}^2 = \frac{\paren{1 - \frac{r_-}{r}}^{9/13}}{1 - \frac{12}{13}\frac{r_-}{r}}\Omega_\mrm{GR}^2
+\end{equation}
+  
+\end{frame}
+
+\begin{frame}{Timelike Geodesics Analysis - Kepler's Third Law}
+
+    \begin{figure}
+        \includegraphics[width=0.7\linewidth]{images/Kepler2.png}
+    \end{figure}
   
 \end{frame}
 
 \subsection{Black Hole Phenomenology}
-\begin{frame}{Black Hole Phenomenology}
+\begin{frame}{Black Hole Phenomenology - Generation of Mock Data}
+
+    True parameters: $M_\mrm{true}$, $q_\mrm{true} = |Q_\mrm{true}| / M_\mrm{true}$.\\
+    $N$ randomly generated areal radii:
+
+    \begin{equation}
+        1.01\max\paren{\rho_{\mrm{ISCO}}^{\mrm{GR}}, \rho_{\mrm{ISCO}}^{\mrm{ER}}} <\rho_i<15M_{\mrm{true}}
+    \end{equation}
+
+    Generating mock data via ER:
+
+    \begin{equation}
+        \Omega_{i,\mrm{true}} = \Omega_{\mrm{ER}} \paren{\rho_i; M_{\mrm{true}}, q_{\mrm{true}}}
+    \end{equation}
+
+    Adding gaussian noise:
+
+    \begin{equation}
+        \Omega_{i,\mrm{obs}} = \Omega_{i,\mrm{true}} + \epsilon_i, \ \ \ \epsilon_i \sim \mcal N\paren{0,\sigma_{\Omega_i}^2}
+    \end{equation}
+
+    Fitting by minimizing:
+
+    \begin{equation}
+        \chi^2(M,q) = \sum_{i=1}^{N}\frac{\left[\Omega_{i,\mrm{obs}} - \Omega(\rho_i;M,q) \right]^2}{\sigma_{\Omega_i}^2}.
+    \end{equation}
+  
+\end{frame}
+
+\begin{frame}{Black Hole Phenomenology - $N = 8$, $\sigma_\Omega / \Omega = 1\%$}
+
+    \begin{figure}
+        \includegraphics[width=0.49\linewidth]{images/MassDistrib.png}
+        \includegraphics[width=0.49\linewidth]{images/ChargeDistrib.png}
+    \end{figure}
+  
+\end{frame}
+
+\begin{frame}{Black Hole Phenomenology - $N = 100$, $\sigma_\Omega / \Omega = 10^{-5}$}
+
+    \begin{figure}
+        \includegraphics[width=0.5\linewidth]{images/MassDistrib_Noiseless.png}
+        \includegraphics[width=0.5\linewidth]{images/ChargeDistrib_Noiseless.png}
+    \end{figure}
+  
+\end{frame}
+
+\begin{frame}{Black Hole Phenomenology - $N = 100$, $\sigma_\Omega / \Omega = 10^{-5}$}
+
+    \begin{figure}
+        \includegraphics[width=0.5\linewidth]{images/MassBias.png}
+        \includegraphics[width=0.5\linewidth]{images/ChargeBias.png}
+    \end{figure}
   
 \end{frame}
 
 \section{Conclusion}
 \begin{frame}{Conclusion}
+
+    Results summary:
+
+    \begin{itemize}
+        \item ER allows for a broader range of charge-to-mass ratio.
+        \item The causal structure of an ER charged black hole spacetime is not the same as a Reissner-Nordström spacetime.
+        \item ER predicts a smaller photon sphere.
+        \item ER predicts a larger ISCO radius.
+        \item ER predicts a larger rotation velocity in circular orbits.
+        \item GR tends to underestimate the properties of a black hole.
+    \end{itemize}
+
+    \vspace{10pt}
+
+    \textbf{Main result}: Even for extremely charged black holes, the two theories are nearly impossible to distinguish.
   
+\end{frame}
+
+\begin{frame}{Acknowledgements}
+
+    \begin{center}
+        Thank you for listening.
+    \end{center}
+
+    Thanking Olivier Minazzoli and:
+
+    \begin{figure}
+        \includegraphics[width=0.6\linewidth]{images/ARTEMIS.png}
+    \end{figure}
+    
 \end{frame}
 
 \end{document}
