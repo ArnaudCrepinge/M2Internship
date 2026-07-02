@@ -225,11 +225,13 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
 \begin{frame}{Einstein and Entangled Frames}
     \begin{center}
         
-    \begin{tabular}{cc}
-        Entangled frame & Einstein frame \\
+    \begin{tabular}{ccc}
+        Entangled frame & $\overset{\mrm{equivalent}}{\iff}$ & Einstein frame \\
         \hline
-        $g_{\mu\nu}$ & $\tilde g_{\mu\nu} = \phi g_{\mu\nu}$\\
-        Massive particles do not follow geodesics & Particles follow geodesics
+        $g_{\mu\nu}$ & & $\tilde g_{\mu\nu} = \phi g_{\mu\nu}$\\
+        \hline
+        Massive particles do & & Particles follow \\
+        not follow geodesics & & geodesics
     \end{tabular}
 
     \end{center}
@@ -296,8 +298,16 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
 \begin{frame}{Null Geodesics Analysis - Photon Sphere}
 
     \begin{figure}
-        \includegraphics[width=0.8\linewidth]{images/PhotonSphere_Horizon.png}
+        \includegraphics[width=0.6\linewidth]{images/PhotonSphere_Horizon.png}
     \end{figure}
+
+    \begin{equation}
+        r_{\mrm{ph}}^{\mrm{GR}} = \frac{1}{2}\paren{3M + \sqrt{9M^2 - 8Q^2}}
+    \end{equation}
+
+    \begin{equation}
+        r_\mrm{ph}^\mrm{ER} = \frac{1}{4}\paren{\frac{35}{13}r_- + 3r_+ + \sqrt{\paren{\frac{35}{13}r_- + 3r_+}^2 - \frac{384}{13}r_-r_+}}
+    \end{equation}
   
 \end{frame}
 
@@ -317,7 +327,7 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
     &- (6591 r_+^2 + 13351r_+r_- + 6578r_-^2)r^3 \notag \\
     &+ (24336r_+^2r_- + 25740r_+r_-^2 + 4620 r_-^3)r^2 \notag \\
     &- (31668r_+^2r_-^2 + 14388r_+r_-^3)r \notag \\
-    &+ 13824r_+^2r_-^3=0,
+    &+ 13824r_+^2r_-^3=0
 \end{align}
   
 \end{frame}
@@ -380,7 +390,7 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
     Fitting by minimizing:
 
     \begin{equation}
-        \chi^2(M,q) = \sum_{i=1}^{N}\frac{\left[\Omega_{i,\mrm{obs}} - \Omega(\rho_i;M,q) \right]^2}{\sigma_{\Omega_i}^2}.
+        \chi^2(M,q) = \sum_{i=1}^{N}\frac{\left[\Omega_{i,\mrm{obs}} - \Omega(\rho_i;M,q) \right]^2}{\sigma_{\Omega_i}^2}
     \end{equation}
   
 \end{frame}
