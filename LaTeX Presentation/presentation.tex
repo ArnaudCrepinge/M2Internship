@@ -397,8 +397,8 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
 \begin{frame}{Black Hole Phenomenology - $N = 8$, $\sigma_\Omega / \Omega = 1\%$}
 
     \begin{figure}
-        \includegraphics[width=0.49\linewidth]{images/MassDistrib.png}
-        \includegraphics[width=0.49\linewidth]{images/ChargeDistrib.png}
+        \includegraphics[width=0.5\linewidth]{images/MassDistrib.png}
+        \includegraphics[width=0.5\linewidth]{images/ChargeDistrib.png}
     \end{figure}
   
 \end{frame}
@@ -470,5 +470,72 @@ with $T_{\mu\nu} = -\frac{2}{\sqrt{|g|}}\pdv{(\sqrt{|g|}\mcal L_m)}{g^{\mu\nu}}$
 
     $\Rightarrow R / \mcal L_m$ well-defined as $Q \to 0$.
 \end{frame}
+
+\begin{frame}[noframenumbering]
+    Line element:
+
+    \begin{equation}
+        \mrm ds^2 = -f(r)\mrm dt^2 + \frac{\mrm dr^2}{f(r)} + g(r) \mrm d\Omega^2
+    \end{equation}
+
+    Lagrangian-like function:
+
+    \begin{equation}
+        \mscr L = -f(r) \dot t^2 + \frac{\dot r^2}{f(r)} + g(r) \dot\varphi^2
+    \end{equation}
+
+    Conserved quantities:
+
+    \begin{equation}
+        E = f(r)\dot t,\ \ \ L = g(r) \dot\varphi
+    \end{equation}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \textbf{Effective potential for photons}\\
+    We impose $\mrm ds^2 = 0$ and we obtain:
+
+    \begin{equation}
+        \dot r^2 = b^{-2} - V_\mrm{eff}(r)
+    \end{equation}
+
+    with:
+
+    \begin{equation}
+        b = \frac{|L|}{E},\ \ \ V_\mrm{eff}(r) = f(r)/g(r)
+    \end{equation}
+
+\end{frame}
+
+    \begin{frame}[noframenumbering]
+        \textbf{ISCO radius}\\
+        We impose $\mrm ds^2 = -1$ and we obtain:
+        
+        \begin{equation}
+            \dot r^2 = E^2 - V_\mrm{eff}(r)
+        \end{equation}
+
+        with $V_\mrm{eff}(r) = f(r)\bracket{1 + \frac{L^2}{g(r)}}$. We impose $V_\mrm{eff}'(r) = 0$ and $V_\mrm{eff}(r) = E^2$ to obtain $E$ and $L$. Then by imposing $V_\mrm{eff}(r)'' = 0$, we obtain:
+
+        \begin{equation}
+            gg'(ff'' - 2f'^2) + ff'(2g'^2 - gg'') = 0
+        \end{equation}
+    \end{frame}
+
+\begin{frame}[noframenumbering]
+    \textbf{Kepler's third law}\\
+    We impose $\dot r = 0$ and therefore $\partial\mscr L / \partial r = 0$ to obtain:
+
+    \begin{equation}
+        -f'(r)\dot t^2 + g'(r)\dot \varphi^2 = 0
+    \end{equation}
+
+    Thus:
+
+    \begin{equation}
+        \Omega^2 = \paren{\frac{\dot \varphi}{\dot t}}^2 = \frac{f'(r)}{g'(r)}
+    \end{equation}
+\end{frame}
+
 
 \end{document}
